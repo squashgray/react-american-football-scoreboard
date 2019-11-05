@@ -4,11 +4,11 @@ import "./App.css";
 import BottomRow from "./BottomRow";
 
 
-function App() {
+function App(props) {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
   const [homeScore, setHome] = useState(0);
   const [awayScore, setAway] = useState(0);
-  
+  const [currentQuarter, setQuarter] = useState(1);
 
   return (
     <div className="container">
@@ -27,7 +27,7 @@ function App() {
             <div className="away__score"><span>{awayScore}</span></div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow currentQuarter={currentQuarter} />
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -39,7 +39,9 @@ function App() {
           <button onClick={() => setAway(awayScore + 7)} className="awayButtons__touchdown">Away Touchdown</button>
           <button onClick={() => setAway(homeScore + 3)} className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
-        
+        <div>
+          <button onClick={() => setQuarter((currentQuarter % 4) + 1)}  className="quarterButton">Next Quarter</button>
+        </div>
         
       </section>
     </div>
